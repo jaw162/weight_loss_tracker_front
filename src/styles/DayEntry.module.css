@@ -1,0 +1,19 @@
+.container {
+    background-color: rgba(50, 50, 180, .7);
+    color: white;
+    position: absolute;
+    height: 80%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 50%;
+    width: 50%;
+}

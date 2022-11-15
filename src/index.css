@@ -1,0 +1,67 @@
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: 'Public Sans';
+  src: url('/font/Public_Sans/PublicSans-VariableFont_wght.ttf');
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Public Sans';
+  background-color: rgba(240, 248, 255, .15);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+.top-bar {
+  position: fixed;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100vw;
+  height: 10vh;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+
+.top-bar h1 {
+  position: relative;
+  color: rgb(80, 99, 255);
+  left: 10vh;
+  padding: 1rem;
+}
+
+.side-bar {
+  position: fixed;
+  background-color: white;
+  z-index: 1;
+  height: 100vh;
+  width: 10vh;
+  border-right: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.main-display {
+  position: relative;
+  top: 15vh;
+  left: 15vh;
+  display: flex;
+  width: 85vw;
+  height: 550px;
+}
+
+.calendar-container, .chart-container {
+  flex: 1;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 0 0px 2px 2px rgba(0, 0, 18, .1);
+  margin: 2rem;
+}
