@@ -1,6 +1,7 @@
 import dayjs from "dayjs"
 import { createContext, useState, useEffect } from "react"
 import { getAll } from "../dbService"
+import { latestEntry } from "../utils/statsHelpers"
 
 const LogsContext = createContext()
 
@@ -38,7 +39,7 @@ export const LogsProvider = ({ children }) => {
         getAll()
           .then(result => {
             setMonthYear({ month: Number(today.format('M')), year: Number(today.format('YY')) })
-            setLogs({ loading: false, data: result })
+            setLogs({ loading: false, data: result, recent: latestEntry(result) })
           })
           .catch(err => console.log(err))
     }, [])

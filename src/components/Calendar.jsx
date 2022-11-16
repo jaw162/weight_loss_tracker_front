@@ -6,7 +6,7 @@ import styles from '../styles/Calendar.module.css'
 import { ReactComponent as Arrow } from '../icon/down-arrow.svg'
 
 export default function Calendar() {
-  const { backendFormat, handleBackwardClick, handleForwardClick } = useContext(LogsContext)
+  const { logs, backendFormat, handleBackwardClick, handleForwardClick } = useContext(LogsContext)
 
   const [dayInfo, setDayInfo] = useState({ clicked: false, day: null, weight: null })
 
@@ -15,7 +15,7 @@ export default function Calendar() {
   }
   
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${logs.loading ? null : 'show'}`}>
       <div 
         className={styles['arrow-containers']}
         onClick={() => handleBackwardClick()}

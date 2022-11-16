@@ -10,12 +10,8 @@ function App() {
       <div className="top-bar"><h1>Weight Tracker</h1></div>
       <LogsProvider>
         <div className="main-display">
-          <div className='calendar-container'>
-            <Calendar />
-          </div>
-          <div className='chart-container'>
-            <ChartDisplay />
-          </div>
+          <Calendar />
+          <ChartDisplay />
         </div>
       </LogsProvider>
     </div>

@@ -124,7 +124,7 @@ import {
     }
   
     return (
-      <div style={{ height: '100%' }}>
+      <div style={{ height: '100%' }} className={`chart-container ${logs.loading ? null : 'show'}`}>
         <Line 
           options={options} 
           data={showYear ? yearData : monthData}
