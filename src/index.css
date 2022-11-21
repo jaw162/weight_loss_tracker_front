@@ -8,12 +8,22 @@ a {
   src: url('/font/Public_Sans/PublicSans-VariableFont_wght.ttf');
 }
 
+@font-face {
+  font-family: 'Playfair';
+  src: url('/font/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf');
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Public Sans';
+  font-family: 'Playfair';
   background-color: rgba(240, 248, 255, .15);
+  /* overflow-y: hidden; */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: unset;
 }
 
 * {
@@ -23,7 +33,7 @@ body {
 }
 
 .top-bar {
-  position: fixed;
+  position: absolute;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -41,10 +51,10 @@ body {
 }
 
 .side-bar {
-  position: fixed;
+  position: absolute;
   background-color: white;
   z-index: 1;
-  height: 100vh;
+  height: 100%;
   width: 10vh;
   border-right: 2px solid rgba(0, 0, 0, 0.2);
 }
@@ -54,22 +64,36 @@ body {
   top: 15vh;
   left: 15vh;
   display: flex;
+  flex-wrap: wrap;
   width: 85vw;
-  height: 550px;
+  height: 500px;
 }
 
 .chart-container {
-  flex: 1;
+  flex: 6;
   background-color: white;
   border-radius: 3px;
+  box-shadow: 0 0px 2px 2px rgba(0, 0, 0, .2);
+  margin: 2rem;
+  transform: translateY(50%);
+  opacity: 0;
+  height: 100%;
+}
+
+.calendar-container {
+  flex: 4;
+  background-color: white;
+  border-radius: 3px;
+  height: 90%;
   box-shadow: 0 0px 2px 2px rgba(0, 0, 18, .1);
   margin: 2rem;
   transform: translateY(50%);
   opacity: 0;
+  height: 100%;
 }
 
 .show {
-  animation: fadeIn .3s linear .1s 1 forwards;
+  animation: fadeIn .3s ease-in .1s 1 forwards;
 }
 
 @keyframes fadeIn {

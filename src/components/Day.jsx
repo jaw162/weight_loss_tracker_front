@@ -1,9 +1,10 @@
 import LogsContext from '../context/LogsContext'
 import { useContext } from 'react'
 import styles from '../styles/Day.module.css'
+import { ReactComponent as Arrow } from '../icon/down-arrow.svg'
 
 export default function Day({ click }) {
-  const { logs, backendFormat, today, parseDate } = useContext(LogsContext)
+  const { logs, backendFormat, today, parseDate, handleBackwardClick, handleForwardClick } = useContext(LogsContext)
 
   const parsedDate = parseDate(backendFormat)
 
@@ -13,7 +14,22 @@ export default function Day({ click }) {
 
   return (
     <div className={styles.layout}>
-      <h3>{parsedDate.format('MMMM YYYY')}</h3>
+      <div className={styles['month-year']}>
+        <div 
+          className={styles['arrow-containers']}
+          onClick={() => handleBackwardClick()}
+        >
+          <span
+          ><Arrow /></span>
+        </div>
+        <h3>{parsedDate.format('MMMM YYYY')}</h3>
+        <div 
+          className={styles['arrow-containers']}
+          onClick={() => handleForwardClick()}
+        >
+          <span><Arrow /></span>
+        </div>
+      </div>
       <span>S</span>
       <span>M</span>
       <span>T</span>

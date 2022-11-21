@@ -2,6 +2,7 @@ import LogsContext from '../context/LogsContext'
 import { useContext, useState, useEffect } from "react"
 import styles from '../styles/DayEntry.module.css'
 import { postLog } from "../dbService"
+import { latestEntry } from '../utils/statsHelpers'
 
 export default function DayEntry({ day, monthYear, click, weight }) {
 
@@ -17,7 +18,17 @@ export default function DayEntry({ day, monthYear, click, weight }) {
   const handleSubmit = (e) => {
     e.preventDefault()
     postLog({ day: day, monthYear: monthYear, weight: weightInfo })
-      .then(result => setLogs({ ...logs, data: { ...logs.data, [result.monthYear]: result.entries } }))
+      .then(result => {
+        console.log(logs)
+        setLogs((prev) => ({ 
+          ...prev, data: { ...prev.data, [result.monthYear]: result.entries } 
+        })
+        )
+        setLogs((prev) => ({ 
+          ...prev, recent: latestEntry(prev.data)
+        })
+        )
+      })
       .catch(err => console.log(err))
     click({ open: false, day: null, weight: null })
   }
@@ -30,6 +41,7 @@ export default function DayEntry({ day, monthYear, click, weight }) {
           <input 
             type="number"
             name="weight"
+            step="0.01"
             defaultValue={weightInfo}
             onChange={(e) => setWeight(e.target.value)}
           />

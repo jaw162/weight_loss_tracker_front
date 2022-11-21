@@ -2,7 +2,6 @@
     display: grid;
     box-sizing: inherit;
     grid-template-columns: repeat(7, 1fr);
-    height: 100%;
     padding: 1rem;
     align-items: stretch;
     gap: 4px;
@@ -10,7 +9,6 @@
 }
 
 .layout h3 {
-    grid-column: 1/8;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -18,6 +16,7 @@
 }
 .layout span {
     display: flex;
+    height: 10px;
     justify-content: center;
     align-items: center;
 }
@@ -54,4 +53,35 @@
 .day p {
     height: 100%;
     width: 100%;
+}
+
+.month-year {
+    grid-column: 1/8;
+    display: flex;
+    justify-content: space-around;
+}
+
+.arrow-containers {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.arrow-containers span {
+    width: 100%;
+    display: flex;
+    height: fit-content;
+}
+
+.arrow-containers span svg {
+    height: 40px;
+}
+
+.month-year .arrow-containers:first-child span {
+    transform: rotate(90deg);
+}
+
+.month-year .arrow-containers:last-child span {
+    transform: rotate(-90deg);
 }

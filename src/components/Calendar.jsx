@@ -3,10 +3,9 @@ import DayEntry from './DayEntry'
 import { useContext, useState } from 'react'
 import Day from "./Day"
 import styles from '../styles/Calendar.module.css'
-import { ReactComponent as Arrow } from '../icon/down-arrow.svg'
 
 export default function Calendar() {
-  const { logs, backendFormat, handleBackwardClick, handleForwardClick } = useContext(LogsContext)
+  const { logs, backendFormat } = useContext(LogsContext)
 
   const [dayInfo, setDayInfo] = useState({ clicked: false, day: null, weight: null })
 
@@ -15,14 +14,7 @@ export default function Calendar() {
   }
   
   return (
-    <div className={`${styles.container} ${logs.loading ? null : 'show'}`}>
-      <div 
-        className={styles['arrow-containers']}
-        onClick={() => handleBackwardClick()}
-      >
-        <span
-        ><Arrow /></span>
-      </div>
+    <div className={`calendar-container ${styles.container} ${logs.loading ? null : 'show'}`}>
         {backendFormat && 
         <Day 
           click={handleDayClick}
@@ -34,12 +26,6 @@ export default function Calendar() {
           click={setDayInfo}
           weight={dayInfo.weight}
         />}
-      <div 
-        className={styles['arrow-containers']}
-        onClick={() => handleForwardClick()}
-      >
-        <span><Arrow /></span>
-      </div>
     </div>
   )
 }

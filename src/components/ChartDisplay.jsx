@@ -92,7 +92,9 @@ import {
       },
       maintainAspectRatio: false,
       layout: {
-        padding: 20
+        padding: {
+          right: 50
+        }
       },
       interaction: {
         mode: 'index',
@@ -124,14 +126,17 @@ import {
     }
   
     return (
-      <div style={{ height: '100%' }} className={`chart-container ${logs.loading ? null : 'show'}`}>
+      <div 
+        className={`chart-container ${logs.loading ? null : 'show'}`}
+        style={{ height: '100%' }}
+      >
         <Line 
           options={options} 
           data={showYear ? yearData : monthData}
         />
         <button 
           onClick={() => setShow(!showYear)}
-          style={{ all: 'unset', textAlign: 'center', width: '100%', padding: '1rem', cursor: 'pointer' }}
+          style={{ all: 'unset', textAlign: 'center', width: '100%', margin: '2rem 0', cursor: 'pointer' }}
         >{showYear ? 'Show Results By Month' : 'Show Results By Year'}</button>
       </div>
     )

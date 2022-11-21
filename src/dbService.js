@@ -1,19 +1,26 @@
-const URL = process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3001'
+const URL = process.env.NODE_ENV === 'production' ? '/' : 'http://localhost:3001/'
 
 export const getAll = async () => {
-    const res = await fetch(`${URL}`)
+    const res = await fetch(`${URL}api/users/me`, {
+      credentials: 'include',
+    })
 
     const data = await res.json()
 
-    return data
+    if (res.ok) {
+      return data
+    } else {
+      throw new Error(data.error)
+    }
 }
 
 export const postLog = async ({ monthYear, day, weight }) => {
-    const backRes = await fetch(`${URL}`, {
+    const backRes = await fetch(`${URL}api/months`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
+        credentials: 'include',
         body: JSON.stringify({
           "monthYear": monthYear,
           "day": day,
@@ -24,4 +31,41 @@ export const postLog = async ({ monthYear, day, weight }) => {
       const data = await backRes.json()
 
       return data
+}
+
+export const login = async ( username, password ) => {
+  const backRes = await fetch(`${URL}api/login`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify({
+        "username": username,
+        "password": password
+      })
+    })
+
+    const data = await backRes.json()
+
+    if (backRes.ok) {
+      return data
+    } else {
+      throw new Error(data.error)
+    }
+}
+
+export const checkLogin = async ( username, password ) => {
+
+  const backRes = await fetch(`${URL}api/users/check`, {
+      credentials: 'include'
+    })
+
+    const data = await backRes.json()
+
+    if (backRes.ok) {
+      return data
+    } else {
+      throw new Error(data.error)
+    }
 }

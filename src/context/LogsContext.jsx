@@ -39,7 +39,7 @@ export const LogsProvider = ({ children }) => {
         getAll()
           .then(result => {
             setMonthYear({ month: Number(today.format('M')), year: Number(today.format('YY')) })
-            setLogs({ loading: false, data: result, recent: latestEntry(result) })
+            setLogs({ loading: false, data: result.data, recent: latestEntry(result.data), goal: result['goal-weight'] })
           })
           .catch(err => console.log(err))
     }, [])
