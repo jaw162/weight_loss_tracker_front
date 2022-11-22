@@ -1,3 +1,5 @@
 .container {
     display: flex;
+    color: var(--secondary-colour);
+    transition: .3s;
 }

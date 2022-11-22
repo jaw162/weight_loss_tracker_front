@@ -22,7 +22,7 @@ import {
     Legend
   )
   
-  export default function ChartDisplay() {
+  export default function ChartDisplay({ dark }) {
     const { logs, backendFormat, parseDate, today } = useContext(LogsContext)
     const [showYear, setShow] = useState(false)
 
@@ -63,7 +63,8 @@ import {
         title: {
           display: true,
           text: showYear ? dayjsDate.format('YYYY') : dayjsDate.format('M/YY'),
-        },
+          color: dark ? '#f0f8ff' : '#000'
+        }
       },
       spanGaps: true,
       scales: {
@@ -72,21 +73,29 @@ import {
           title: {
             display: true,
             text: 'kg',
-            align: 'center'
+            align: 'center',
+            color: dark ? '#f0f8ff' : '#000'
           },
           beginAtZero: true,
           grid: {
             display: false
+          },
+          ticks: {
+            color: dark ? '#f0f8ff' : '#000'
           }
         },
         x: {
           title: {
             display: true,
             text: showYear ? 'Month' : 'Day',
-            align: 'center'
+            align: 'center',
+            color: dark ? '#f0f8ff' : '#000'
           },
           grid: {
             display: false
+          },
+          ticks: {
+            color: dark ? '#f0f8ff' : '#000'
           }
         },
       },
@@ -99,7 +108,7 @@ import {
       interaction: {
         mode: 'index',
         intersect: false
-      }
+      },
     }
   
     const monthData = {
@@ -108,8 +117,8 @@ import {
         {
           label: 'Weight',
           data: dailyData,
-          borderColor: 'rgb(80, 99, 255)',
-          backgroundColor: 'rgba(80, 99, 255, 0.5)',
+          borderColor: dark ? 'rgb(230, 248, 255)' : 'rgb(80, 99, 255)',
+          backgroundColor: dark ? 'rgb(230, 248, 255)' : 'rgba(80, 99, 255, 0.5)',
         },
       ],
     }
