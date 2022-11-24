@@ -31,7 +31,7 @@ import {
     const setGraphUpperBound = (data) => {
       const highest = Object.values(data).reduce((a, b) => (
         a > b ? a : b
-      ))
+      ), 90)
       return highest
     }
 
@@ -51,7 +51,7 @@ import {
       month?.[label] ? month[label] : null
     ))
     
-    const byMonthUpperBound = month ? setGraphUpperBound(month) : 100
+    const byMonthUpperBound = month ? setGraphUpperBound(month) : 90
   
     const byYearUpperBound = monthlyAverages.reduce((a, b) => (
       a > b ? a : b

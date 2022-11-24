@@ -1,13 +1,12 @@
-import dayjs from "dayjs"
 import { createContext, useState, useEffect } from "react"
 import { login, checkLogin } from "../dbService"
+import { logout } from "../dbService"
+import { toast } from "react-toastify"
 
 const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState({ loading: true, user: null })
-
-    console.log(user)
 
     useEffect(() => {
         checkLoggedIn()
@@ -16,24 +15,32 @@ export const AuthProvider = ({ children }) => {
     const loginHandler = (e, username, password) => {
         e.preventDefault()
         login(username, password)
-          .then((result) => setUser({ loading: false, user: result }))
+          .then((result) => setUser({ loading: false, user: result.username }))
           .catch((err) => {
-            console.log(err)
+            toast.error(err)
             setUser({ loading: false, user: null })
           })
     }
 
     const checkLoggedIn = () => {
         checkLogin()
-          .then((result) => setUser({ loading: false, user: result.message }))
+          .then((result) => setUser({ loading: false, user: result.username }))
           .catch((err) => {
             console.log(err)
             setUser({ loading: false, user: null })
           })
     }
 
+    const handleLogout = () => {
+      logout()
+        .then(result => {
+          setUser({ loading: false, user: null })
+        })
+        .catch(err => console.log(err))
+    }
+
     return (
-        <AuthContext.Provider value={{ user, loginHandler }}>
+        <AuthContext.Provider value={{ user, loginHandler, handleLogout }}>
             {children}
         </AuthContext.Provider>
     )

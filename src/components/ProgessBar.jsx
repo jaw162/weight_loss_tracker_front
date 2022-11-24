@@ -15,7 +15,7 @@ export default function ProgessBar() {
             >Goal Weight</h3>
             <h3
               className={styles.data}
-            >{!dayjsDate ? '-' : `${logs.goal}kg`}</h3>
+            >{`${logs.goal}kg`}</h3>
         </div>
         <div className={styles.stat}>
             <h3
@@ -37,10 +37,10 @@ export default function ProgessBar() {
             <h3
               className={styles['stat-header']}
             >Distance from Weight</h3>
-            <h3
-              style={!logs.loading && (logs.goal - logs.recent.weight) > 0 ? { color: 'green' } : { color: 'red' } }
+            {dayjsDate && <h3
+              style={(logs.goal - logs.recent.weight) > 0 ? { color: 'green' } : { color: 'red' } }
               className={styles.data}
-            >{!dayjsDate ? '-' : `${(logs.goal - logs.recent.weight).toFixed(2)}kg`}</h3>
+            >{!dayjsDate ? '-' : `${(logs.goal - logs.recent.weight).toFixed(2)}kg`}</h3>}
         </div>
     </div>
   )

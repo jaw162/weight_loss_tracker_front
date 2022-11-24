@@ -1,7 +1,7 @@
 import LogsContext from '../context/LogsContext'
 import { useContext, useState, useEffect } from "react"
 import styles from '../styles/DayEntry.module.css'
-import { postLog } from "../dbService"
+import { deleteEntry, postLog } from "../dbService"
 import { latestEntry } from '../utils/statsHelpers'
 
 export default function DayEntry({ day, monthYear, click, weight }) {
@@ -19,7 +19,6 @@ export default function DayEntry({ day, monthYear, click, weight }) {
     e.preventDefault()
     postLog({ day: day, monthYear: monthYear, weight: weightInfo })
       .then(result => {
-        console.log(logs)
         setLogs((prev) => ({ 
           ...prev, data: { ...prev.data, [result.monthYear]: result.entries } 
         })
@@ -33,6 +32,20 @@ export default function DayEntry({ day, monthYear, click, weight }) {
     click({ open: false, day: null, weight: null })
   }
 
+  const handleDelete = (e, day, monthYear) => {
+    e.preventDefault()
+    const formatForReq = (date) => {
+      const arr = date.split('/')
+      return arr.join('%2F')
+    }
+    deleteEntry(day, formatForReq(monthYear))
+      .then((result) => {
+        setLogs({ ...logs, data: { ...logs.data, [monthYear]: (result.entries ?? null) } })
+        click({ open: false, day: null, weight: null })
+      })
+      .catch((err) => console.log(err))
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -44,11 +57,16 @@ export default function DayEntry({ day, monthYear, click, weight }) {
             step="0.01"
             defaultValue={weightInfo}
             onChange={(e) => setWeight(e.target.value)}
+            // autoFocus
           />
         </form>
-        <button 
-          type="submit" 
-          onClick={() => click({ open: false, day: null, weight: null })}>Close</button>
+        <div className={styles.options}>
+          {logs.data?.[monthYear]?.[day] && <button
+            onClick={(e) => handleDelete(e, day, monthYear)}>Delete</button>}
+          <button 
+            type="submit" 
+            onClick={() => click({ open: false, day: null, weight: null })}>Close</button>
+        </div>
       </div>
     </div>
   )

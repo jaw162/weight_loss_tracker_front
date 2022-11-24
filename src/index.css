@@ -83,6 +83,16 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1rem;
 }
 
+.buttons {
+  display: flex;
+  margin-right: 1rem;
+  color: var(--secondary-colour);
+}
+
+.buttons span {
+  cursor: pointer;
+}
+
 .dark-mode-toggle {
   display: flex;
   justify-content: space-between;
@@ -175,4 +185,8 @@ h1, h2, h3, h4, h5, h6 {
       transform: none;
       opacity: 1;
   }
+}
+
+button {
+  all: unset;
 }

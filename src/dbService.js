@@ -51,11 +51,11 @@ export const login = async ( username, password ) => {
     if (backRes.ok) {
       return data
     } else {
-      throw new Error(data.error)
+      throw `${data.message}`
     }
 }
 
-export const checkLogin = async ( username, password ) => {
+export const checkLogin = async () => {
 
   const backRes = await fetch(`${URL}api/users/check`, {
       credentials: 'include'
@@ -66,6 +66,41 @@ export const checkLogin = async ( username, password ) => {
     if (backRes.ok) {
       return data
     } else {
+      throw `${data.message}`
+    }
+}
+
+export const logout = async () => {
+
+  const backRes = await fetch(`${URL}api/logout`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+      credentials: 'include'
+    })
+
+    const data = await backRes.json()
+
+    if (backRes.ok) {
+      return data
+    } else {
       throw new Error(data.error)
+    }
+}
+
+export const deleteEntry = async (day, monthYear) => {
+
+  const backRes = await fetch(`${URL}api/months/${day}/${monthYear}`, {
+      method: 'DELETE',
+      credentials: 'include'
+    })
+
+    const data = await backRes.json()
+
+    if (backRes.ok) {
+      return data
+    } else {
+      throw `${data.message}`
     }
 }
