@@ -64,111 +64,37 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
 }
 
-.top-bar {
-  position: absolute;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100vw;
-  height: 10vh;
-  border-bottom: 2px solid var(--secondary-accent);
-  background-color: var(--main-colour);
-  transition: .3s;
-}
-
-.top-bar h1 {
-  position: relative;
-  color: var(--primary-accent);
-  left: 10vh;
-  padding: 1rem;
-}
-
-.buttons {
-  display: flex;
-  margin-right: 1rem;
-  color: var(--secondary-colour);
-}
-
-.buttons span {
-  cursor: pointer;
-}
-
-.dark-mode-toggle {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 23px;
-  width: 100px;
-  margin-right: 1rem;
-}
-
-.dark-mode-toggle svg {
-  margin: 0 .2rem;
-  fill: var(--secondary-colour);
-}
-
-.button {
-  all: unset;
-  height: 100%;
-  width: 90px;
-  cursor: pointer;
-  border: 1px solid var(--secondary-colour);
-  border-radius: 25px;
-}
-
-.button span {
-  border-radius: 25px;
-  background-color: var(--secondary-colour);
-  border: 2px solid var(--main-colour);
-  transform: none;
-  transition: transform .3s;
-  display: block;
-  height: 23px;
-  width: 23px;
-}
-
-.side-bar {
-  position: absolute;
-  background-color: var(--main-colour);
-  z-index: 1;
-  height: 100%;
-  width: 10vh;
-  border-right: 2px solid var(--secondary-accent);
-  transition: .3s;
-}
-
-.main-display {
-  position: relative;
-  top: 15vh;
-  left: 15vh;
+.wrapper {
+  max-width: 1300px;
+  height: 500px;
+  padding: .5rem;
   display: flex;
   flex-wrap: wrap;
-  width: 85vw;
-  height: 500px;
+  margin: 0 auto;
 }
 
 .chart-container {
-  flex: 6;
+  flex: 1;
   background-color: var(--main-colour);
   border-radius: 3px;
   box-shadow: 0 0px 2px 2px var(--secondary-accent);
-  margin: 2rem;
   transform: translateY(50%);
   opacity: 0;
   height: 100%;
   transition: .3s;
+  margin-left: 1rem;
 }
 
 .calendar-container {
-  flex: 4;
+  flex: 1;
   background-color: var(--main-colour);
   border-radius: 3px;
   height: 90%;
   box-shadow: 0 0px 2px 2px var(--secondary-accent);
-  margin: 2rem;
   transform: translateY(50%);
   opacity: 0;
   height: 100%;
+  margin-right: 1rem;
 }
 
 .show {

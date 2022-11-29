@@ -1,0 +1,92 @@
+.header {
+    width: 100vw;
+    height: 10vh;
+    padding: .5rem;
+    border-bottom: 2px solid var(--secondary-accent);
+    background-color: var(--main-colour);
+    transition: .3s;
+}
+
+.sub-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.github-links {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.github-links h4 {
+  margin-left: .2rem;
+}
+
+.github-links a:hover {
+  color: blue;
+}
+
+.header-main {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+}
+  
+.header h1 {
+    color: var(--primary-accent);
+}
+
+.buttons {
+    display: flex;
+    color: var(--secondary-colour);
+  }
+  
+.buttons span, .sub-header span {
+    cursor: pointer;    
+}
+
+.dark-mode-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 23px;
+  width: 100px;
+}
+
+.dark-mode-toggle svg {
+  margin: 0 .2rem;
+  fill: var(--secondary-colour);
+}
+
+.button {
+  all: unset;
+  height: 100%;
+  width: 90px;
+  cursor: pointer;
+  border: 1px solid var(--secondary-colour);
+  border-radius: 25px;
+}
+
+.button span {
+  border-radius: 25px;
+  background-color: var(--secondary-colour);
+  border: 2px solid var(--main-colour);
+  transform: none;
+  transition: transform .3s;
+  display: block;
+  height: 23px;
+  width: 23px;
+}
