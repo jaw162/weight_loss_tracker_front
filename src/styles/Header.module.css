@@ -13,6 +13,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  color: var(--secondary-colour);
 }
 
 .github-links {
@@ -26,7 +27,7 @@
 }
 
 .github-links a:hover {
-  color: blue;
+  color: var(--primary-accent);
 }
 
 .header-main {
@@ -89,4 +90,17 @@
   display: block;
   height: 23px;
   width: 23px;
+}
+
+@media (max-width: 1024px) {
+  .header {
+    font-size: .8rem;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .header {
+    height: 15vh;
+  }
 }
