@@ -18,8 +18,8 @@ function App() {
   console.log(wideScreen)
 
   useEffect(() => {
-    const isNarrow = window.matchMedia('(min-width: 600px)').matches
-    setWide({ isNarrow: isNarrow, showChart: false })
+    const isWide = window.matchMedia('(min-width: 600px)').matches
+    setWide({ isWide: isWide, showChart: false })
   }, [])
 
   return (
@@ -34,7 +34,7 @@ function App() {
             user={user}
             handleLogout={handleLogout}
           />
-          {!wideScreen.isNarrow &&
+          {!wideScreen.isWide &&
           <nav 
             className="mobile-nav"
           >
@@ -48,8 +48,8 @@ function App() {
             >Chart</button>
           </nav>
           }
-          {wideScreen.isNarrow && <ProgessBar />}
-          {wideScreen.isNarrow ? 
+          {wideScreen.isWide && <ProgessBar />}
+          {wideScreen.isWide ? 
           <div className="wrapper">
             <Calendar />
             <ChartDisplay dark={dark} />
