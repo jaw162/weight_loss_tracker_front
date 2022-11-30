@@ -3,6 +3,7 @@ import { useContext, useState, useEffect } from "react"
 import styles from '../styles/DayEntry.module.css'
 import { deleteEntry, postLog } from "../dbService"
 import { latestEntry } from '../utils/statsHelpers'
+import { toast } from 'react-toastify'
 
 export default function DayEntry({ day, monthYear, click, weight }) {
 
@@ -19,14 +20,7 @@ export default function DayEntry({ day, monthYear, click, weight }) {
     e.preventDefault()
     postLog({ day: day, monthYear: monthYear, weight: weightInfo })
       .then(result => {
-        setLogs((prev) => ({ 
-          ...prev, data: { ...prev.data, [result.monthYear]: result.entries } 
-        })
-        )
-        setLogs((prev) => ({ 
-          ...prev, recent: latestEntry(prev.data)
-        })
-        )
+        toast.success('Success')
       })
       .catch(err => console.log(err))
     click({ open: false, day: null, weight: null })
@@ -40,7 +34,7 @@ export default function DayEntry({ day, monthYear, click, weight }) {
     }
     deleteEntry(day, formatForReq(monthYear))
       .then((result) => {
-        setLogs({ ...logs, data: { ...logs.data, [monthYear]: (result.entries ?? null) } })
+        toast.success('Success')
         click({ open: false, day: null, weight: null })
       })
       .catch((err) => console.log(err))
