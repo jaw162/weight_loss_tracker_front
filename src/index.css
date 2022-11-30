@@ -159,4 +159,8 @@ button {
   .chart-container, .calendar-container, .wrapper {
       margin: .5rem;
   }
+
+  .mobile-wrapper {
+    height: 400px;
+  }
 } 
