@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 
 export default function DayEntry({ day, monthYear, click, weight }) {
 
-  const { logs, setLogs } = useContext(LogsContext)
+  const { logs, setNeedsRefresh } = useContext(LogsContext)
 
   const [weightInfo, setWeight] = useState()
 
@@ -21,6 +21,7 @@ export default function DayEntry({ day, monthYear, click, weight }) {
     postLog({ day: day, monthYear: monthYear, weight: weightInfo })
       .then(result => {
         toast.success('Success')
+        setNeedsRefresh(true)
       })
       .catch(err => console.log(err))
     click({ open: false, day: null, weight: null })
@@ -35,6 +36,7 @@ export default function DayEntry({ day, monthYear, click, weight }) {
     deleteEntry(day, formatForReq(monthYear))
       .then((result) => {
         toast.success('Success')
+        setNeedsRefresh(true)
         click({ open: false, day: null, weight: null })
       })
       .catch((err) => console.log(err))

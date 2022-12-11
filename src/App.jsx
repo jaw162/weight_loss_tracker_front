@@ -15,8 +15,6 @@ function App() {
   const [dark, setDark] = useLocalStorage()
   const [wideScreen, setWide] = useState(false)
 
-  console.log(wideScreen)
-
   useEffect(() => {
     const isWide = window.matchMedia('(min-width: 600px)').matches
     setWide({ isWide: isWide, showChart: false })

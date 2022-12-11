@@ -8,6 +8,7 @@ const LogsContext = createContext()
 export const LogsProvider = ({ children }) => {
     const [logs, setLogs] = useState({ loading: true, data: {} })
     const [monthYear, setMonthYear] = useState({})
+    const [needsRefresh, setNeedsRefresh] = useState(false)
 
     const today = dayjs()
 
@@ -36,16 +37,26 @@ export const LogsProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        getAll()
-          .then(result => {
-            setMonthYear({ month: Number(today.format('M')), year: Number(today.format('YY')) })
-            setLogs({ loading: false, data: result.data, recent: latestEntry(result.data), goal: result['goal-weight'] })
-          })
-          .catch(err => console.log(err))
+      getAll()
+        .then(result => {
+          setMonthYear({ month: Number(today.format('M')), year: Number(today.format('YY')) })
+          setLogs({ loading: false, data: result.data, recent: latestEntry(result.data), goal: result['goal-weight'] })
+        })
+        .catch(err => console.log(err))
     }, [])
 
+    useEffect(() => {
+      if (!needsRefresh) return
+      getAll()
+        .then(result => {
+          setLogs({ loading: false, data: result.data, recent: latestEntry(result.data), goal: result['goal-weight'] })
+        })
+        .catch(err => console.log(err))
+      setNeedsRefresh(false)
+    }, [needsRefresh])
+
     return (
-        <LogsContext.Provider value={{ logs, setLogs, backendFormat, today, handleForwardClick, handleBackwardClick, parseDate }}>
+        <LogsContext.Provider value={{ logs, setLogs, backendFormat, today, handleForwardClick, handleBackwardClick, parseDate, setNeedsRefresh }}>
             {children}
         </LogsContext.Provider>
     )
